@@ -1,32 +1,32 @@
 ﻿#include "pch.h"
 #include <cstdio>
 #include <iostream>
-#include <string>
 using namespace std;
-int dp[501];
+int gcd(int a, int b) {
+	while (b != 0) {
+		int temp = a % b;
+		a = b;
+		b = temp;
+	}
+	return a;
+}
 
 int main() {
-	string s;
-	cin >> s;
-	s = " " + s;
+	int ans = 0;
 
-	dp[0] = 1;
-	for (int i = 1; i < s.size(); i++) {
-		int x = s[i] - '0';
+	int n;
+	cin >> n;
+	int arr[101];
 
-		if (1<=x && x<=9) {
-			dp[i] = (dp[i] + dp[i - 1]) % 1000000;
-		}
-
-		if (i == 1) continue;
-		if (s[i - 1] == '0') continue;
-
-		x = (s[i - 1] - '0') * 10 + (s[i] - '0');
-		if (10 <= x && x <= 26) {
-			dp[i] = (dp[i] + dp[i - 2]) % 1000000;
-		}
-
+	for (int i = 0; i < n; i++) {
+		cin >> arr[i];
 	}
 
-	cout << dp[s.size()-1] << '\n';
+	for (int i = 0; i < n; i++) {
+		for (int j = i; j < n; j++) {
+			ans += gcd(arr[i], arr[j]);
+		}
+	}
+
+	cout << ans << '\n';
 }
