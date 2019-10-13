@@ -1,6 +1,6 @@
 ﻿#include "pch.h"
-#include <cstdio>
 #include <iostream>
+#include <cstdio>
 using namespace std;
 int gcd(int a, int b) {
 	while (b != 0) {
