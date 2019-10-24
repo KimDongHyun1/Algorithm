@@ -3,39 +3,37 @@
 #include <vector>
 using namespace std;
 
-pair<int,int> rec(vector<int> &a, int index, int cur, int plus, int minus, int mul, int div) {
-	if (index == a.size()) return make_pair(cur, cur);
-
-	vector<pair<int,int>> res;
-
-	if (plus > 0) res.push_back(rec(a, index + 1, cur + a[index], plus - 1, minus, mul, div));
-	if (minus > 0) res.push_back(rec(a, index + 1, cur - a[index], plus, minus - 1, mul, div));
-	if (mul > 0) res.push_back(rec(a, index + 1, cur * a[index], plus, minus, mul - 1, div));
-	if (div > 0) res.push_back(rec(a, index + 1, cur / a[index], plus, minus, mul, div - 1));
-
-	auto ans = res[0];
-	for (auto x : res) {
-		if (ans.first < x.first) ans.first = x.first;
-		if (ans.second > x.second) ans.second = x.second;
+bool check(int a[50], vector<int> b, int cnt, int index) {
+	if (cnt == 6) {
+		for (int i = 0; i < 6; i++) {
+			cout << b[i] << ' ';
+		}
+		cout << '\n';
+		return;
 	}
-	return ans;
+
+	if (index >= a.size() - 1) return;
+	index++;
+	b.pop_back();
+	check(a, b, cnt + 1, index);
+	b.push_back(a[index - 1]);
+	b.push_back(a[index]);
+	check(a, b, cnt, index);
 }
 
 int main() {
-	int n;
-	cin >> n;
-	vector<int> a(n);
-	for (int i = 0; i < n; i++) {
+
+	int k;
+	cin >> k;
+	if (k == 0) return 0;
+	int a[50];
+	for (int i = 0; i < k; i++) {
 		cin >> a[i];
 	}
+	vector<int> b;
+	b.push_back(a[0])
+	check(a, b, 0, 0);
+	cout << '\n';
 
-	int plus, minus, mul, div;
-	cin >> plus >> minus >> mul >> div;
-
-
-	pair<int, int> answer;
-	answer = rec(a, 1, a[0], plus, minus, mul, div);
-	cout << answer.first << '\n';
-	cout << answer.second << '\n';
 	return 0;
 }
