@@ -1,5 +1,4 @@
-﻿#include "pch.h"
-#include <iostream>
+﻿#include <iostream>
 using namespace std;
 
 int main()
@@ -17,8 +16,6 @@ int main()
 	for (int x = 0; x <= n - 8; x++) {
 		for (int y = 0; y <= m - 8; y++) {
 
-			// 여기서 cnt1과 cnt2를 해놓은 이유는
-			// 시작하는 (x,y)가 'B'나'W' 라고해서 나중에도 그게 더 많지 않을 수 있기 떄문이다.
 			int cnt1 = 0;
 			int cnt2 = 0;
 
