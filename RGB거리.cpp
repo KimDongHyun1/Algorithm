@@ -1,5 +1,4 @@
-﻿#include "pch.h"
-#include <iostream>
+﻿#include <iostream>
 #include <algorithm>
 using namespace std;
 int dp[1001][3]; // N번째에서 빨강, 파랑, 초록이 선택될 때의 최솟값
