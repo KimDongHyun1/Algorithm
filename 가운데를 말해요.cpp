@@ -20,7 +20,7 @@ int main() {
 		if (big.size() > small.size()) small.push(cur);
 		else big.push(cur);
 
-		if (!small.empty() && big.top() < small.top()) {
+		if (!small.empty() && big.top() > small.top()) {
 			int smallTop = small.top();
 			int bigTop = big.top();
 			small.pop(); big.pop();
