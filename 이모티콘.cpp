@@ -1,5 +1,4 @@
-﻿#include "pch.h"
-#include <iostream>
+﻿#include <iostream>
 #include <cstring>
 #include <queue>
 using namespace std;
@@ -33,7 +32,7 @@ int main()
 		}
 
 		//clip의 내용을 저장한다.(추가한다)
-		if (!visited[num + clip][clip] && num + clip <= 1000) {
+		if (!visited[num + clip][clip] && num + clip <= 2000) {
 			visited[num + clip][clip] = true;
 			cnt[num + clip][clip] = cnt[num][clip] + 1;
 			Q.push(make_pair(num + clip, clip));
