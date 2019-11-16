@@ -1,5 +1,4 @@
-﻿#include "pch.h"
-#include <iostream>
+﻿#include <iostream>
 #include <queue>
 #include <stack>
 #include <cstring>
