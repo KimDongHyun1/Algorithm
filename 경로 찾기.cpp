@@ -16,7 +16,7 @@ bool bfs(int start, int end) {
 
 	while (!Q.empty()) {
 		int now = Q.front();
-		Q.pop();
+		Q.pop(); 
 	
 		for (int next = 0; next < n; next++) {
 			if (!visited[next] && a[now][next]) {
