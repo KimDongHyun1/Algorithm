@@ -5,7 +5,7 @@
 using namespace std;
 bool visited[100001];
 bool finished[100001];
-int a[100001];
+int a[100001]; 
 int t, n, cnt;
 
 void dfs(int cur) {
