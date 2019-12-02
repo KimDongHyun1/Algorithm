@@ -3,10 +3,11 @@
 using namespace std;
 int dx[] = { -1,0,1,0 };
 int dy[] = { 0,1,0,-1 };
-int a[52][52];
-int n, m, x, y, d, flag, cnt;
+int a[50][50];
+int n, m, x, y, d, cnt, flag, nd, nx, ny;
 
-int main() {
+int main()
+{
 	cin >> n >> m;
 	cin >> x >> y >> d;
 	for (int i = 0; i < n; i++) {
@@ -14,44 +15,43 @@ int main() {
 			cin >> a[i][j];
 		}
 	}
-
+	
 	while (true) {
 		if (!a[x][y]) {
-			cnt++;
 			a[x][y] = 2;
+			cnt++;
 		}
 
-		for (int i = 0; i < 5; i++) {
-			if (i == 4) { // 후진
-				int nd = (d + 2) % 4;
-				int nx = x + dx[nd];
-				int ny = y + dy[nd];
-				
+		bool flag = false;
+		for (int k = 0; k < 4; k++) {
+			nd = (d + 3) % 4;
+			nx = x + dx[nd];
+			ny = y + dy[nd];
 
-				if (nx < 0 || nx > n - 1 || ny < 0 || ny > m - 1 || a[nx][ny] == 1) { // 벽 이면 끝
-					flag = 1;
-				}
-				else {
-					x = nx;
-					y = ny;
-				}
-				break;
-			}
-			int nd = (d + 3) % 4;
-			int nx = x + dx[nd];
-			int ny = y + dy[nd];
-			if (nx < 0 || nx > n-1 || ny < 0 || ny > m-1 || !a[nx][ny]) {
-				d = nd;
+			if (nx >= 0 && nx < n && ny >= 0 && ny < m && !a[nx][ny]) {
 				x = nx;
 				y = ny;
+				d = nd;
+				flag = true;
 				break;
 			}
 			else {
 				d = nd;
 			}
 		}
-		if (flag) break;
+		if (flag) continue;
+
+		nd = (d + 2) % 4;
+		nx = x + dx[nd];
+		ny = y + dy[nd];
+
+		if (nx < 0 || nx >= n || ny < 0 || ny >= m || a[nx][ny] == 1) break;
+
+		x = nx;
+		y = ny;
 	}
+
 	cout << cnt << '\n';
 	return 0;
 }
+
