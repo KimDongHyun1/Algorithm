@@ -9,7 +9,7 @@ int p[1001];
 int main()
 {
 	int n;
-	cin >> n;
+	cin >> n; 
 	for (int i = 1; i <= n; i++) {
 		cin >> t[i] >> p[i];
 	}
