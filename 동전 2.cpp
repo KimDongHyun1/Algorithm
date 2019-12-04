@@ -5,7 +5,7 @@
 using namespace std;
 int dp[100001];
 int a[101];
-
+ 
 int main() {
 	int n, k;
 	cin >> n >> k;
