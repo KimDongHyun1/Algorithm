@@ -10,7 +10,7 @@ char map[51][51];
 int R, C, cnt;
 queue<pair<int, int>> Q;
 queue<pair<int, int>> water;
-
+ 
 int main()
 {
 	cin >> R >> C;

@@ -9,7 +9,7 @@ int dy[] = { 1,-1,0,0 };
 int visit[301][301];
 int a[301][301];
 int b[301][301];
-int N, M, cnt, ans;
+int N, M, cnt, ans; 
 
 void bfs(int i, int j) {
 	visit[i][j] = true;

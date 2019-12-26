@@ -6,7 +6,7 @@
 using namespace std;
 int visit[10000];
 string a, b;
-int cnt, temp;
+int cnt, temp; 
 
 bool prime(int n) {
 	for (int i = 2; i < n; i++) {
