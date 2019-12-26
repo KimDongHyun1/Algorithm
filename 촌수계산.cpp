@@ -7,7 +7,7 @@ int visit[101];
 bool a[101][101];
 int N, X, Y, M;
 int ans = -1;
-queue<int> Q;
+queue<int> Q;   
 
 int main()
 {
