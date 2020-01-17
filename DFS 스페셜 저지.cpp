@@ -3,11 +3,11 @@
 #include <algorithm>
 #include <vector>
 using namespace std;
-bool visit[100001];
-int order[100001];
 vector<int> v[100001];
 vector<int> d;
-vector<int> ans;
+int visit[100001];
+int order[100001];
+int arr[100001];
 int n;
 
 void DFS(int x) {
@@ -22,7 +22,6 @@ void DFS(int x) {
 	}
 }
 
-
 int main()
 {
 	cin >> n;
@@ -32,11 +31,12 @@ int main()
 		v[x].push_back(y);
 		v[y].push_back(x);
 	}
+
 	for (int i = 0; i < n; i++) {
 		int x;
 		cin >> x;
-		ans.push_back(x);
-		order[x] = i; // ans 의 우선순위 !! ㅁ<-ㅁ <-ㅁ <-ㅁ
+		arr[i] = x;
+		order[x] = i;
 	}
 
 	for (int i = 1; i <= n; i++) {
@@ -44,18 +44,16 @@ int main()
 			return order[u] < order[v];
 		});
 	}
-	
-	DFS(1);
 
-	bool check = true;
+	DFS(1);
 	for (int i = 0; i < n; i++) {
-		if (ans[i] != d[i]) {
-			check = false;
-			break;
+		if (arr[i] != d[i]) {
+			cout << 0 << '\n';
+			return 0;
 		}
 	}
 
-	cout << check << '\n';
+	cout << 1 << '\n';
 	return 0;
 }
 
