@@ -1,55 +1,62 @@
 ﻿#include <iostream>
 #include <algorithm>
-#include <vector>
 #include <string>
+#include <vector>
 using namespace std;
-char alpha[256];
+string s[11];
+int alphabet[26]; // A ~ Z
+int n, ans;
+vector<char> v;
+vector<int> num;
 
-int check(vector<string> &a, vector<char> &letters, vector<int> &d) {
-	int m = letters.size();
-	int sum = 0;
-	for (int i = 0; i < m; i++) {
-		alpha[letters[i]] = d[i];
-	}
-	for (string s : a) {
-		int now = 0;
-		for (char x : s) {
-			now = now * 10 + alpha[x];
-		}
-		sum += now;
-	}
-	return sum;
-}
+int main()
+{
+	cin >> n;
+	for (int i = 0; i < n; i++) {
+		string str;
+		cin >> str;
+		s[i] = str;
 
-int main() {
-	int k;
-	cin >> k;
-	vector<string> a(k);
-	vector<char> letters;
-
-	for (int i = 0; i < k; i++) {
-		cin >> a[i];
-		for (char x : a[i]) {
-			letters.push_back(x);
+		for (int j = 0; j < str.size(); j++) {
+			if (alphabet[str[j] - 'A'] == 0) {
+				v.push_back(str[j]);
+				alphabet[str[j] - 'A'] = true;
+			}
 		}
 	}
 
-	sort(letters.begin(), letters.end());
-	letters.erase(unique(letters.begin(), letters.end()), letters.end());
-	int m = letters.size();
-	vector<int> d;
-	for (int i = 9; i > 9 - m; i--) {
-		d.push_back(i);
+	for (int i = 0; i < v.size(); i++) {
+		num.push_back(9 - i);
 	}
-	sort(d.begin(), d.end());
 
-	int ans = 0;
+	// A B C
+	// 7 8 9
+
+	sort(v.begin(), v.end());
+	sort(num.begin(), num.end());
+
+
 	do {
-		int now = check(a, letters, d);
-		if (ans < now) {
-			ans = now;
+
+		for (int i = 0; i < num.size(); i++) {
+			alphabet[v[i] - 'A'] = num[i];
 		}
-	} while (next_permutation(d.begin(), d.end()));
+
+		int sum = 0;
+		for (int i = 0; i < n; i++) {
+			int val = 0;
+			int gob = 1;
+
+			for (int j = s[i].size() - 1; j >= 0; j--) {
+				val = val + alphabet[s[i][j] - 'A'] * gob;
+				gob *= 10;
+			}
+
+			sum += val;
+		}
+
+		ans = max(ans, sum);
+	} while (next_permutation(num.begin(), num.end()));
 
 	cout << ans << '\n';
 	return 0;
